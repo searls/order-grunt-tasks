@@ -3,16 +3,15 @@
   "version": "0.0.1",
   "description": "An example project for unit and integration testing under node with jasmine",
   "scripts": {
-  },
-  "main": "index.js",
-  "author": "",
-  "scripts": {
     "start": "node main.js",
     "test": "grunt spec:unit spec:e2e"
   },
+  "main": "index.js",
+  "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "coffee-script": "~1.7"
+    "coffee-script": "~1.7",
+    "underscore": "^1.6.0"
   },
   "devDependencies": {
     "grunt-jasmine-bundle": "~0.1.4",
