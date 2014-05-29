@@ -12,7 +12,7 @@
   },
   "license": "BSD-2-Clause",
   "dependencies": {
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.7"
   },
   "devDependencies": {
     "grunt-jasmine-bundle": "~0.1.4",
