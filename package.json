@@ -1,10 +1,10 @@
 {
-  "name": "node-tdd-example",
+  "name": "orders-grunt-tasks",
   "version": "0.0.1",
   "description": "An example project for unit and integration testing under node with jasmine",
   "scripts": {
   },
-  "main": "main.js",
+  "main": "index.js",
   "author": "",
   "scripts": {
     "start": "node main.js",
