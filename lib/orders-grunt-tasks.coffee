@@ -6,8 +6,13 @@ module.exports = (taskTargets, buildRules) ->
       "#{taskTarget.task}:#{target}"
   .flatten().value()
 
-  _(buildRules).reduce (memo, buildRule) ->
+  _(buildRules).chain().map((r) ->
+    _(arrayWrap(r.iWant)).map (iWant) ->
+      _({}).extend(r, {iWant})
+
+  ).flatten().reduce( (memo, buildRule) ->
     switch buildRule.toBe
+
       when "removed"
         if buildRule.iWant.match(/\:/)
           _(memo).without(buildRule.iWant)
@@ -16,4 +21,7 @@ module.exports = (taskTargets, buildRules) ->
             target.match(new RegExp("^#{buildRule.iWant}:"))
       else
         memo
-  , gruntTasks
+  , gruntTasks).value()
+
+arrayWrap = (thing) ->
+  if _(thing).isArray() then thing else [thing]

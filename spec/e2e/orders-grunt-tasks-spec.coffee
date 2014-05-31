@@ -29,7 +29,7 @@ describe 'ordersGruntTasks', ->
 
   describe "removal rule", ->
 
-    context "1 task, 2 targets, target removal rule", ->
+    context "1 task, 2 targets, 1 removal", ->
       Given -> @taskTargets = [{task: "coffee", targets:["src", "spec"]}]
       Given -> @buildRules = [
         iWant: "coffee:src"
@@ -37,10 +37,21 @@ describe 'ordersGruntTasks', ->
       ]
       Then -> expect(@result).toEqual(["coffee:spec"])
 
-    context "1 task, 2 target, task removal rule", ->
+    context "1 task, 2 target, 1 task-level removal", ->
       Given -> @taskTargets = [{task: "coffee", targets:["src", "spec"]}]
       Given -> @buildRules = [
         iWant: "coffee"
         toBe: "removed"
       ]
       Then -> expect(@result).toEqual([])
+
+    context "2 removals", ->
+      Given -> @taskTargets = [
+        {task: "coffee", targets:["src", "spec"]}
+        {task: "images", targets:["dev"]}
+      ]
+      Given -> @buildRules = [
+        iWant: ["coffee:src", "images:dev"]
+        toBe: "removed"
+      ]
+      Then -> expect(@result).toEqual(["coffee:spec"])
