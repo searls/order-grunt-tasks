@@ -1,4 +1,5 @@
 _ = require('underscore')
+require('./ext/underscore')
 
 module.exports = (taskTargets, buildRules) ->
   gruntTasks = _(taskTargets).chain().map (taskTarget) ->
@@ -6,13 +7,8 @@ module.exports = (taskTargets, buildRules) ->
       "#{taskTarget.task}:#{target}"
   .flatten().value()
 
-  _(buildRules).chain().map((r) ->
-    _(arrayWrap(r.iWant)).map (iWant) ->
-      _({}).extend(r, {iWant})
-
-  ).flatten().reduce( (memo, buildRule) ->
+  _(buildRules).chain().unzipProperty("iWant").reduce((memo, buildRule) ->
     switch buildRule.toBe
-
       when "removed"
         if buildRule.iWant.match(/\:/)
           _(memo).without(buildRule.iWant)
