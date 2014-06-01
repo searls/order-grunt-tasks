@@ -12,6 +12,7 @@ module.exports =
       .unzipProperty("iWant")
       .unzipProperty("these")
       .expandTasks("iWant", gruntTasks)
+      .expandTasks("these", gruntTasks)
       .reduce((memo, buildRule) ->
         switch buildRule.toBe
           when "removed"

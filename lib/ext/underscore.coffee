@@ -51,7 +51,7 @@ module.exports =
   expandTasks: (list, propertyName, knownTasks) ->
     _(list).chain().map (item) ->
       value = item[propertyName]
-      if value.match(/\:/)
+      if !value? || value.match(/\:/)
         item
       else
         _(knownTasks).chain().select (target) ->

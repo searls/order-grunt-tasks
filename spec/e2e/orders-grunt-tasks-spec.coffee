@@ -81,6 +81,18 @@ describe 'ordersGruntTasks', ->
       ]
       Then -> expect(@result).toEqual(["images:dev","coffee:src"])
 
+    context "1 rule, 2 tasks, 1 target, generalized 'these'", ->
+      Given -> @taskTargets = [
+        {task: "coffee", targets:["src"]}
+        {task: "images", targets:["dev", "dist"]}
+      ]
+      Given -> @buildRules = [
+        iWant: "coffee:src"
+        toBe: "after"
+        these: "images"
+      ]
+      Then -> expect(@result).toEqual(["images:dev", "images:dist","coffee:src"])
+
 
     # don't blow up if the 'these' target is missing
     # don't blow up if the 'iWant' target is missing
