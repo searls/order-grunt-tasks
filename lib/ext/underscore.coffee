@@ -28,3 +28,37 @@ _.mixin
       else
         r
     .flatten().value()
+
+  # This is a domain-specific higher-order function
+  #
+  # Say we have:
+  #
+  # [{iWant: "coffee", toBe: "removed"}]
+  #
+  # And we want all user-supplied tasks to be expanded into
+  # fully qualified task-targets so that downstream behavior can
+  # just trust that it will always get "coffee:foo" or "coffee:bar"
+  #
+  # If we had an array of known fully-qualified names like
+  # ["coffee:src", "coffee:space"], then we could produce:
+  #
+  # [
+  #   {iWant: "coffee:src", toBe: "removed"}
+  #   {iWant: "coffee:spec", toBe: "removed"}
+  # ]
+  #
+  # Just invoke `_(list).expandTasks("iWant", ["coffee:src", "coffee:space"])`
+  expandTasks: (list, propertyName, knownTasks) ->
+    _(list).chain().map (item) ->
+      value = item[propertyName]
+      if value.match(/\:/)
+        item
+      else
+        _(knownTasks).chain().select (target) ->
+          target.match(new RegExp("^#{value}:"))
+        .map (target) ->
+          obj = {}
+          obj[propertyName] = target
+          _({}).extend(item, obj)
+        .value()
+    .flatten().value()
