@@ -93,6 +93,20 @@ describe 'ordersGruntTasks', ->
       ]
       Then -> expect(@result).toEqual(["images:dev", "images:dist","coffee:src"])
 
+  describe "before rule", ->
+    context "1 rule, 2 tasks, 1 target", ->
+      Given -> @taskTargets = [
+        {task: "coffee", targets:["src"]}
+        {task: "images", targets:["dev"]}
+      ]
+      Given -> @buildRules = [
+        iWant: "images:dev"
+        toBe: "before"
+        these: "coffee:src"
+      ]
+      Then -> expect(@result).toEqual(["images:dev","coffee:src"])
+
+
   describe "edge cases", ->
     context "an undefined task as an iWant", ->
       Given -> @taskTargets = [{task: "coffee", targets:["src"]}]

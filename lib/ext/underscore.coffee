@@ -63,7 +63,6 @@ module.exports =
         .value()
     .flatten().value()
 
-  #
   # Say I have an array:
   # ["a", "b", "c"]
   #
@@ -71,9 +70,21 @@ module.exports =
   # ["b", "a", "c"]
   #
   # I would invoke it _(["a","b","c"]).insertedAfter("a", "b")
-  insertedAfter: (list, itemToMove, itemToMoveOtherOneAfter)->
-    _(list).chain().clone()
-      .without(itemToMove)
-      .tap (list) ->
-        list.splice(_(list).indexOf(itemToMoveOtherOneAfter)+1, 0, itemToMove)
-      .value()
+  placedAfter: (list, itemToPlace, itemToInsertOtherOneAfter)->
+    arrayWithItemInsertedRelativeTo(list, itemToPlace, itemToInsertOtherOneAfter, "after")
+
+  # The opposite of _.placedAfter
+  placedBefore: (list, itemToPlace, itemToInsertOtherOneBefore)->
+    arrayWithItemInsertedRelativeTo(list, itemToPlace, itemToInsertOtherOneBefore, "before")
+
+arrayWithItemInsertedRelativeTo = (list, itemToPlace, relativeItem, type) ->
+  offset = switch type
+    when "after" then 1
+    when "before" then -1
+    else 0
+
+  _(list).chain().clone()
+    .without(itemToPlace)
+    .tap (list) ->
+      list.splice(_(list).indexOf(relativeItem) + offset, 0, itemToPlace)
+    .value()
