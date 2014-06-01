@@ -1,6 +1,6 @@
 _ = require('underscore')
 
-_.mixin
+module.exports =
   # This guy is a little nutty.
   # Say you have this:
   # [
@@ -18,15 +18,15 @@ _.mixin
   #
   # Then you would call `_(list).unzipProperty("bar")`
   unzipProperty: (list, propertyName) ->
-    _(list).chain().map (r) ->
-      property = r[propertyName]
+    _(list).chain().map (item) ->
+      property = item[propertyName]
       if _(property).isArray()
         _(property).map (value) ->
           obj = {}
           obj[propertyName] = value
-          _({}).extend(r, obj)
+          _({}).extend(item, obj)
       else
-        r
+        item
     .flatten().value()
 
   # This is a domain-specific higher-order function
