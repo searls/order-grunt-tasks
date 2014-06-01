@@ -14,6 +14,8 @@ module.exports = (taskTargets, buildRules) ->
       switch buildRule.toBe
         when "removed"
           _(memo).without(buildRule.iWant)
+        when "after"
+          _(memo).moveAfter(buildRule.iWant, buildRule.these)
         else
           memo
     , gruntTasks)

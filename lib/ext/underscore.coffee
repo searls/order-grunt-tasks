@@ -62,3 +62,18 @@ _.mixin
           _({}).extend(item, obj)
         .value()
     .flatten().value()
+
+  #
+  # Say I have an array:
+  # ["a", "b", "c"]
+  #
+  # And I want a new array with "a" after "b":
+  # ["b", "a", "c"]
+  #
+  # I would invoke it _(["a","b","c"]).moveAfter("a", "b")
+  moveAfter: (list, itemToMove, itemToMoveOtherOneAfter)->
+    _(list).chain().clone()
+      .without(itemToMove)
+      .tap (list) ->
+        list.splice(_(list).indexOf(itemToMoveOtherOneAfter)+1, 0, itemToMove)
+      .value()
