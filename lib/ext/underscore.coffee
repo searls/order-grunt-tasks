@@ -70,8 +70,8 @@ module.exports =
   # And I want a new array with "a" after "b":
   # ["b", "a", "c"]
   #
-  # I would invoke it _(["a","b","c"]).moveAfter("a", "b")
-  moveAfter: (list, itemToMove, itemToMoveOtherOneAfter)->
+  # I would invoke it _(["a","b","c"]).insertedAfter("a", "b")
+  insertedAfter: (list, itemToMove, itemToMoveOtherOneAfter)->
     _(list).chain().clone()
       .without(itemToMove)
       .tap (list) ->

@@ -18,7 +18,7 @@ module.exports =
           when "removed"
             _(memo).without(buildRule.iWant)
           when "after"
-            _(memo).moveAfter(buildRule.iWant, buildRule.these)
+            _(memo).insertedAfter(buildRule.iWant, buildRule.these)
           else
             memo
       , gruntTasks)
