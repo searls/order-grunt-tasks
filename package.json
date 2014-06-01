@@ -1,6 +1,6 @@
 {
   "name": "order-grunt-tasks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ordering grunt 'task:target' strings via rules, applied in-order",
   "scripts": {
     "test": "grunt spec:unit spec:e2e"
