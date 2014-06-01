@@ -1,5 +1,7 @@
 # order-grunt-tasks
 
+[![Build Status](https://travis-ci.org/searls/order-grunt-tasks.svg)](https://travis-ci.org/searls/order-grunt-tasks)
+
 **We're building this to provide a sane API for ordering build tasks
 to [Lineman](https://github.com/linemanjs/lineman).**
 
