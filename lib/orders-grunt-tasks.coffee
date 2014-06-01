@@ -10,6 +10,7 @@ module.exports =
 
     _(buildRules).chain()
       .unzipProperty("iWant")
+      .unzipProperty("these")
       .expandTasks("iWant", gruntTasks)
       .reduce((memo, buildRule) ->
         switch buildRule.toBe
