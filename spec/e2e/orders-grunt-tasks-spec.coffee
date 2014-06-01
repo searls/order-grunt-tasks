@@ -93,6 +93,20 @@ describe 'ordersGruntTasks', ->
       ]
       Then -> expect(@result).toEqual(["images:dev", "images:dist","coffee:src"])
 
+  describe "edge cases", ->
+    context "an undefined task as an iWant", ->
+      Given -> @taskTargets = [{task: "coffee", targets:["src"]}]
+      Given -> @buildRules = [
+        iWant: "wat"
+        toBe: "removed"
+      ]
+      Then -> expect(@result).toEqual(["coffee:src"])
 
-    # don't blow up if the 'these' target is missing
-    # don't blow up if the 'iWant' target is missing
+    context "an undefined task as a 'these'", ->
+      Given -> @taskTargets = [{task: "coffee", targets:["src"]}]
+      Given -> @buildRules = [
+        iWant: "coffee:src"
+        toBe: "after"
+        these: 'wat'
+      ]
+      Then -> expect(@result).toEqual(["coffee:src"])
