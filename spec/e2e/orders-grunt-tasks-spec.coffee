@@ -1,7 +1,7 @@
 describe 'ordersGruntTasks', ->
   Given -> @subject = require('./../../lib/orders-grunt-tasks')
 
-  When -> @result = @subject(@taskTargets, @buildRules)
+  When -> @result = @subject.order(@taskTargets, @buildRules)
 
   describe "no rules", ->
     context "simplest case imaginable", ->

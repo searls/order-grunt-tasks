@@ -1,13 +1,12 @@
 {
-  "name": "orders-grunt-tasks",
-  "version": "0.0.1",
-  "description": "An example project for unit and integration testing under node with jasmine",
+  "name": "order-grunt-tasks",
+  "version": "0.0.0",
+  "description": "ordering grunt 'task:target' strings via rules, applied in-order",
   "scripts": {
-    "start": "node main.js",
     "test": "grunt spec:unit spec:e2e"
   },
   "main": "index.js",
-  "author": "",
+  "author": "Justin Searls",
   "license": "BSD-2-Clause",
   "dependencies": {
     "coffee-script": "~1.7",

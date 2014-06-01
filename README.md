@@ -1,4 +1,4 @@
-# task-targets
+# order-grunt-tasks
 
 **We're building this to provide a sane API for ordering build tasks
 to [Lineman](https://github.com/linemanjs/lineman).**
